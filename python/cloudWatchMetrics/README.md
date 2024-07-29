@@ -12,7 +12,7 @@ on object creation.
 to interact with S3 and CloudWatch.
 3. **SQS Queue**: Receives notifications from S3 events and triggers the
 Lambda function. It includes a DLQ for failed messages.
-4. **Lambda Function**: Processes files uploaded to S3, extracts metrics 
+4. **Lambda Function**: Processes files uploaded to S3, extracts metrics
 from the JSON content, and pushes these metrics to CloudWatch.
 
 ## Directory Structure
