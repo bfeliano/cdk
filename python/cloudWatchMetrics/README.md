@@ -1,5 +1,8 @@
 # Cloud Watch Custom Metrics Project
-This project sets up an AWS infrastructure using AWS CDK. The stack includes an S3 bucket, an IAM role, an SQS queue with a dead-letter queue (DLQ), and a Lambda function triggered by S3 events via SQS.
+
+This project sets up an AWS infrastructure using AWS CDK.
+The stack includes an S3 bucket, an IAM role, an SQS queue with a
+dead-letter queue (DLQ), and a Lambda function triggered by S3 events via SQS.
 
 ## Components
 
@@ -16,10 +19,11 @@ This project sets up an AWS infrastructure using AWS CDK. The stack includes an 
 │  └── monitoring.py  
 └──  app.py  
 
-
 ## Lambda Function
 
-The Lambda function (`lambda/monitoring.py`) processes files uploaded to the S3 bucket. It extracts several metrics from the JSON content of the files and pushes these metrics to CloudWatch.
+The Lambda function (`lambda/monitoring.py`) processes files uploaded to the
+S3 bucket. It extracts several metrics from the JSON content of the files
+and pushes these metrics to CloudWatch.
 
 ### Extracted Metrics
 
@@ -36,8 +40,9 @@ All of these are generic metrics that can be updated as needed.
 ## Deployment
 
 ### Prerequisites
+
 1. AWS CLI configured with your credentials.
-2.  AWS CDK installed (npm install -g aws-cdk).
+2. AWS CDK installed (npm install -g aws-cdk).
 
 ### Steps
 
@@ -51,6 +56,7 @@ All of these are generic metrics that can be updated as needed.
 `cdk deploy`
 
 ### Cleanup
+
 1. To delete the stack and all resources:  
 `cdk destroy`
  
