@@ -1,11 +1,10 @@
-import boto3
-import os
 import json
+import boto3
 
 s3_client = boto3.client('s3')
 cloudwatch = boto3.client('cloudwatch', 'eu-west-1')
 
-def handler(event, context):
+def handler(event):
     # Looping every SQS message
     for sqs_record in event ['Records']:
         s3_event = json.loads(sqs_record['body'])
@@ -30,7 +29,7 @@ def handler(event, context):
                 app_name = file_name.split('_')[0]  # Extract the first part of the file name
 
                 # Add here the metric data
-                maxTimeForInfo1Fetch = {
+                max_time_for_info1_fetch_metric = {
                     'MetricName': 'maxTimeForInfoFetch',
                     'Dimensions': [
                         {
@@ -43,7 +42,7 @@ def handler(event, context):
                     'Timestamp': cycle_end_date
                 }
 
-                maxTimeForInfo2Fetch = {
+                max_time_for_info2_fetch_metric = {
                     'MetricName': 'maxTimeForInfo2Fetch',
                     'Dimensions': [
                         {
@@ -56,7 +55,7 @@ def handler(event, context):
                     'Timestamp': cycle_end_date
                 }
 
-                skippedResources = {
+                skipped_resources_metric = {
                     'MetricName': 'skippedResources',
                     'Dimensions': [
                         {
@@ -72,10 +71,10 @@ def handler(event, context):
                 # Send the metric to cloudWatch
                 cloudwatch.put_metric_data(
                     Namespace='ELM_Metrics',
-                    MetricData=[maxTimeForInfo1Fetch, maxTimeForInfo2Fetch, skippedResources]
+                    MetricData=[max_time_for_info1_fetch_metric, max_time_for_info2_fetch_metric, skipped_resources_metric]
                 )
                 print('Processed event:', s3_event)
-            except Exception as e:
+            except ImportError as e:
                 print(f'Error: {e}')
                 return {
                     'statusCode': 500,
