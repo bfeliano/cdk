@@ -1,58 +1,56 @@
+# Cloud Watch Custom Metrics Project
+This project sets up an AWS infrastructure using AWS CDK. The stack includes an S3 bucket, an IAM role, an SQS queue with a dead-letter queue (DLQ), and a Lambda function triggered by S3 events via SQS.
 
-# Welcome to your CDK Python project!
+## Components
 
-This is a blank project for CDK development with Python.
+1. **S3 Bucket**: Stores files and triggers the Lambda function via SQS on object creation.
+2. **IAM Role**: Grants the Lambda function the necessary permissions to interact with S3 and CloudWatch.
+3. **SQS Queue**: Receives notifications from S3 events and triggers the Lambda function. It includes a DLQ for failed messages.
+4. **Lambda Function**: Processes files uploaded to S3, extracts metrics from the JSON content, and pushes these metrics to CloudWatch.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+## Directory Structure
 
-This project is set up like a standard Python project.  The initialization
-process also creates a virtualenv within this project, stored under the `.venv`
-directory.  To create the virtualenv it assumes that there is a `python3`
-(or `python` for Windows) executable in your path with access to the `venv`
-package. If for any reason the automatic creation of the virtualenv fails,
-you can create the virtualenv manually.
+├── cloud_watch_metrics/  
+│  └── cloud_watch_metrics_stack.py  
+├── lambda/  
+│  └── monitoring.py  
+└──  app.py  
 
-To manually create a virtualenv on MacOS and Linux:
 
-```
-$ python3 -m venv .venv
-```
+## Lambda Function
 
-After the init process completes and the virtualenv is created, you can use the following
-step to activate your virtualenv.
+The Lambda function (`lambda/monitoring.py`) processes files uploaded to the S3 bucket. It extracts several metrics from the JSON content of the files and pushes these metrics to CloudWatch.
 
-```
-$ source .venv/bin/activate
-```
+### Extracted Metrics
 
-If you are a Windows platform, you would activate the virtualenv like this:
+1. **maxTimeForInfo1Fetch**
+2. **maxTimeForInfo2Fetch**
+3. **skippedResources**
 
-```
-% .venv\Scripts\activate.bat
-```
+All of these are generic metrics that can be updated as needed.
 
-Once the virtualenv is activated, you can install the required dependencies.
+### Example JSON File
 
-```
-$ pip install -r requirements.txt
-```
+[applicationName.json](./applicationName.json) 
 
-At this point you can now synthesize the CloudFormation template for this code.
+## Deployment
 
-```
-$ cdk synth
-```
+### Prerequisites
+1. AWS CLI configured with your credentials.
+2.  AWS CDK installed (npm install -g aws-cdk).
 
-To add additional dependencies, for example other CDK libraries, just add
-them to your `setup.py` file and rerun the `pip install -r requirements.txt`
-command.
+### Steps
 
-## Useful commands
+1. Install Dependencies  
+`pip install -r requirements.txt`
 
- * `cdk ls`          list all stacks in the app
- * `cdk synth`       emits the synthesized CloudFormation template
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk docs`        open CDK documentation
+2. Bootstrap CDK Environment  
+`cdk bootstrap`
 
-Enjoy!
+3. Deploy the Stack  
+`cdk deploy`
+
+### Cleanup
+1. To delete the stack and all resources:  
+`cdk destroy`
+ 

@@ -22,7 +22,7 @@ def handler(event, context):
                 data = json.loads(file_content)
                 cycle_end_date = data['cycleEndDate']
                 max_time_for_info1_fetch = data['Information1']['maxTimeForFetch']
-                max_time_for_info2_fetch = data['lcInformation2']['maxTimeForFetch']
+                max_time_for_info2_fetch = data['Information2']['maxTimeForFetch']
                 skipped_resources = data['cycleStatus']['skippedResources']
 
                 # Extract the app name from the file name

@@ -1,0 +1,25 @@
+{
+  "cycleId": "CycleID_id",
+  "totalCycleDuration": 1758056917314,
+  "cycleStartDate": 1721256917314,
+  "cycleEndDate": 1721983274,
+  "totalTimeForParsing": 1721256917314,
+
+  "Information1": {
+    "maxTimeForFetch": 7000,
+    "minTimeForFetch": 500,
+    "totalTimeForFetch": 400000
+  },
+
+  "Information2": {
+    "totalTimeForFetch": 0,
+    "maxTimeForFetch": 10000,
+    "minTimeForFetch": 500,
+    "avgTimeForFetch": 50
+  },
+
+  "cycleStatus": {
+    "failedResourcesUploadedtoAWS": 0,
+    "skippedResources": 150
+  }
+}
