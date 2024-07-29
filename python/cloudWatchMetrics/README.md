@@ -6,10 +6,14 @@ dead-letter queue (DLQ), and a Lambda function triggered by S3 events via SQS.
 
 ## Components
 
-1. **S3 Bucket**: Stores files and triggers the Lambda function via SQS on object creation.
-2. **IAM Role**: Grants the Lambda function the necessary permissions to interact with S3 and CloudWatch.
-3. **SQS Queue**: Receives notifications from S3 events and triggers the Lambda function. It includes a DLQ for failed messages.
-4. **Lambda Function**: Processes files uploaded to S3, extracts metrics from the JSON content, and pushes these metrics to CloudWatch.
+1. **S3 Bucket**: Stores files and triggers the Lambda function via SQS
+on object creation.
+2. **IAM Role**: Grants the Lambda function the necessary permissions
+to interact with S3 and CloudWatch.
+3. **SQS Queue**: Receives notifications from S3 events and triggers the
+Lambda function. It includes a DLQ for failed messages.
+4. **Lambda Function**: Processes files uploaded to S3, extracts metrics 
+from the JSON content, and pushes these metrics to CloudWatch.
 
 ## Directory Structure
 
@@ -35,7 +39,7 @@ All of these are generic metrics that can be updated as needed.
 
 ### Example JSON File
 
-[applicationName.json](./applicationName.json) 
+[applicationName.json](./applicationName.json)
 
 ## Deployment
 
@@ -59,4 +63,3 @@ All of these are generic metrics that can be updated as needed.
 
 1. To delete the stack and all resources:  
 `cdk destroy`
- 
