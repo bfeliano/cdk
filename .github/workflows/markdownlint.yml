@@ -1,13 +1,13 @@
-name: Lint
+name: MarkdownLint
 
 on: [pull_request]
 
 jobs:
-  run-lint:
+  run-mdlint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: DavidAnson/markdownlint-cli2-action@v16
-      with:
-        config: 'config/.markdownlint.json'
-        globs: '**/*.md'
+      - uses: actions/checkout@v4
+      - uses: DavidAnson/markdownlint-cli2-action@v16
+        with:
+          config: "config/.markdownlint.json"
+          globs: "**/*.md"
