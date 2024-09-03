@@ -1,58 +1,47 @@
+# Lambda Port Check Project
 
-# Welcome to your CDK Python project!
+This project sets up an AWS Lambda Function that checks connectivity of a
+specific port on an EC2 instance and record the result in a CloudWatch
+custom metric.  
+The stack includes a Lambda Function, an IAM role, and a Event Bridge rule.  
+Currently, only one Instance and one port is being monitored, but more
+instances or ports can be added to the code, located in [lambda_code/handler.py](./lambda_code/handler.py)  
 
-This is a blank project for CDK development with Python.
+## Components
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+1. **IAM Role**: Grants the Lambda function the necessary permissions
+to interact with CloudWatch.
+2. **Lambda Function**: Check connectivity with a specific IP/Port and
+sends the results to a custom metric in CloudWatch.
+3. **Event Bridge Rule**: Trigger the Lambda every minute.
 
-This project is set up like a standard Python project.  The initialization
-process also creates a virtualenv within this project, stored under the `.venv`
-directory.  To create the virtualenv it assumes that there is a `python3`
-(or `python` for Windows) executable in your path with access to the `venv`
-package. If for any reason the automatic creation of the virtualenv fails,
-you can create the virtualenv manually.
+## Directory Structure
 
-To manually create a virtualenv on MacOS and Linux:
+├── cdk_lambda_port_check/  
+│  └── cdk_lambda_port_check_stack.py  
+├── lambda_code/  
+│  └── handler.py  
+└──  app.py  
 
-```
-$ python3 -m venv .venv
-```
+## Deployment
 
-After the init process completes and the virtualenv is created, you can use the following
-step to activate your virtualenv.
+### Prerequisites
 
-```
-$ source .venv/bin/activate
-```
+1. AWS CLI configured with your credentials.
+2. AWS CDK installed (npm install -g aws-cdk).
 
-If you are a Windows platform, you would activate the virtualenv like this:
+### Steps
 
-```
-% .venv\Scripts\activate.bat
-```
+1. Install Dependencies  
+`pip install -r requirements.txt`
 
-Once the virtualenv is activated, you can install the required dependencies.
+2. Bootstrap CDK Environment  
+`cdk bootstrap`
 
-```
-$ pip install -r requirements.txt
-```
+3. Deploy the Stack  
+`cdk deploy`
 
-At this point you can now synthesize the CloudFormation template for this code.
+### Cleanup
 
-```
-$ cdk synth
-```
-
-To add additional dependencies, for example other CDK libraries, just add
-them to your `setup.py` file and rerun the `pip install -r requirements.txt`
-command.
-
-## Useful commands
-
- * `cdk ls`          list all stacks in the app
- * `cdk synth`       emits the synthesized CloudFormation template
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk docs`        open CDK documentation
-
-Enjoy!
+1. To delete the stack and all resources:  
+`cdk destroy`
