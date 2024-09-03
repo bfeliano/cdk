@@ -5,7 +5,8 @@ specific port on an EC2 instance and record the result in a CloudWatch
 custom metric.  
 The stack includes a Lambda Function, an IAM role, and a Event Bridge rule.  
 Currently, only one Instance and one port is being monitored, but more
-instances or ports can be added to the code, located in [lambda_code/handler.py](./lambda_code/handler.py)  
+instances or ports can be added to the code, located in 
+[lambda_code/handler.py](./lambda_code/handler.py).  
 
 ## Components
 
