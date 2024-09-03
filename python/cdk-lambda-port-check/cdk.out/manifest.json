@@ -1,0 +1,123 @@
+{
+  "version": "36.0.0",
+  "artifacts": {
+    "CdkLambdaPortCheckStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "CdkLambdaPortCheckStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "CdkLambdaPortCheckStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://058264476462/eu-west-1",
+      "properties": {
+        "templateFile": "CdkLambdaPortCheckStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::058264476462:role/cdk-hnb659fds-deploy-role-058264476462-eu-west-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::058264476462:role/cdk-hnb659fds-cfn-exec-role-058264476462-eu-west-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-058264476462-eu-west-1/0e28393f77c70a77bd56bed5d179368990f0d9baa1fe3cef75dc40b89d37d9e0.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "CdkLambdaPortCheckStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::058264476462:role/cdk-hnb659fds-lookup-role-058264476462-eu-west-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "CdkLambdaPortCheckStack.assets"
+      ],
+      "metadata": {
+        "/CdkLambdaPortCheckStack": [
+          {
+            "type": "aws:cdk:error",
+            "data": "Could not find any VPCs matching {\"account\":\"058264476462\",\"region\":\"eu-west-1\",\"filter\":{\"vpc-id\":\"vpc-xxxx\"},\"returnAsymmetricSubnets\":true,\"lookupRoleArn\":\"arn:aws:iam::058264476462:role/cdk-hnb659fds-lookup-role-058264476462-eu-west-1\"}",
+            "trace": [
+              "Annotations.addMessage (/tmp/jsii-kernel-4XIlJB/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1608)",
+              "Annotations.addError (/tmp/jsii-kernel-4XIlJB/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1100)",
+              "ContextProvider.getValue (/tmp/jsii-kernel-4XIlJB/node_modules/aws-cdk-lib/core/lib/context-provider.js:2:1172)",
+              "Vpc.fromLookup (/tmp/jsii-kernel-4XIlJB/node_modules/aws-cdk-lib/aws-ec2/lib/vpc.js:1:9203)",
+              "/tmp/tmpn474dcjj/lib/program.js:8895:152",
+              "Kernel._Kernel_ensureSync (/tmp/tmpn474dcjj/lib/program.js:9499:24)",
+              "Kernel.sinvoke (/tmp/tmpn474dcjj/lib/program.js:8895:102)",
+              "KernelHost.processRequest (/tmp/tmpn474dcjj/lib/program.js:10715:36)",
+              "KernelHost.run (/tmp/tmpn474dcjj/lib/program.js:10675:22)",
+              "Immediate._onImmediate (/tmp/tmpn474dcjj/lib/program.js:10676:46)",
+              "process.processImmediate (node:internal/timers:476:21)"
+            ]
+          }
+        ],
+        "/CdkLambdaPortCheckStack/portCheckLambdaRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "portCheckLambdaRole48BE9F6C"
+          }
+        ],
+        "/CdkLambdaPortCheckStack/portCheckLambdaFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "portCheckLambdaFunction5C94CCAA"
+          }
+        ],
+        "/CdkLambdaPortCheckStack/portCheckLambdaTrigger/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "portCheckLambdaTrigger63EAAECE"
+          }
+        ],
+        "/CdkLambdaPortCheckStack/portCheckLambdaTrigger/AllowEventRuleCdkLambdaPortCheckStackportCheckLambdaFunction708ECFA9": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "portCheckLambdaTriggerAllowEventRuleCdkLambdaPortCheckStackportCheckLambdaFunction708ECFA9C588E125"
+          }
+        ],
+        "/CdkLambdaPortCheckStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/CdkLambdaPortCheckStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/CdkLambdaPortCheckStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "CdkLambdaPortCheckStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  },
+  "missing": [
+    {
+      "key": "vpc-provider:account=058264476462:filter.vpc-id=vpc-xxxx:region=eu-west-1:returnAsymmetricSubnets=true",
+      "provider": "vpc-provider",
+      "props": {
+        "account": "058264476462",
+        "region": "eu-west-1",
+        "filter": {
+          "vpc-id": "vpc-xxxx"
+        },
+        "returnAsymmetricSubnets": true,
+        "lookupRoleArn": "arn:${AWS::Partition}:iam::058264476462:role/cdk-hnb659fds-lookup-role-058264476462-eu-west-1"
+      }
+    }
+  ]
+}
