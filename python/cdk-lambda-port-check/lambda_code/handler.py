@@ -11,14 +11,14 @@ def lambda_handler(event, context):
     result = check_port(ec2_ip, port)
 
     cloudwatch.put_metric_data(
-        Namespace='DydraEC2',
+        Namespace='MyNamespace',
         MetricData=[
             {
                 'MetricName': 'Port443Status',
                 'Dimensions': [
                     {
                         'Name': 'InstanceIP',
-                        'Value': '10.141.19.71'
+                        'Value': ec2_ip
                     },
                 ],
                 'Timestamp': time.time(),

@@ -17,6 +17,7 @@ class CdkLambdaPortCheckStack(Stack):
         super().__init__(scope, construct_id, **kwargs)
         
         # Retrieve existing VPC values to be used by the Lambda function
+        # Replace xxxx values for VPC, Subnets and Security Group with your existing ones
         vpc = ec2.Vpc.from_lookup(self, 'myExistingVpc', vpc_id='vpc-xxxx')
         subnet_selection = ec2.SubnetSelection(
             subnet_filters=[
@@ -27,7 +28,7 @@ class CdkLambdaPortCheckStack(Stack):
         )
         security_group = ec2.SecurityGroup.from_security_group_id(self, 'MyExistingSG', "sg-xxxx")
 
-        # IAM role for Lambda function
+        # IAM role to be used by Lambda function
         lambda_role = iam.Role(self, "portCheckLambdaRole",
             role_name="lambda-port-check-iam-role",
             assumed_by=iam.ServicePrincipal("lambda.amazonaws.com"),
@@ -49,9 +50,11 @@ class CdkLambdaPortCheckStack(Stack):
             security_groups=[security_group],
         )
 
+        # Event Bridge Rule triggered every minute
         rule = events.Rule(self, "portCheckLambdaTrigger",
                            rule_name="lambda-port-check-trigger",
                            schedule=events.Schedule.rate(Duration.minutes(1))
                            )
 
+        # Add the lambda function as the rule's target
         rule.add_target(targets.LambdaFunction(lambda_function))
